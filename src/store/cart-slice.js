@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit' 
+import {uiActions} from './ui-slice'
 const cartSlice = createSlice({
     name : 'cart', 
     initialState : {
@@ -41,3 +42,23 @@ const cartSlice = createSlice({
 const cartReducer = cartSlice.reducer
 const actions = cartSlice.actions
 export {cartReducer, actions}
+
+//A function that sends the itemlist to the firebase 
+const sendDataToDb = async (cart, dispatch) => {
+    try{
+        const URI = "https://react-redux-db-2d28e-default-rtdb.firebaseio.com/cart.json"
+        const response = await fetch(URI, {method : "PUT", body : JSON.stringify(cart)}) 
+        dispatch(uiActions.updateUi({
+            open : true, 
+            message : "Database successfully updated", 
+            type : "success"
+        }))
+    }catch(err){
+        dispatch(uiActions.updateUi({
+            open : true, 
+            message : `Request failed. ${err.message}`,
+            type : "error"
+        }))
+    }
+}
+export {sendDataToDb};

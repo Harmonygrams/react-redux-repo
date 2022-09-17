@@ -39,3 +39,10 @@ input {
   color: white;
   background: rgb(18, 20, 26);
 }
+.signup-option{
+  color: white;
+  margin-block-start: 20px;
+}
+.signup-option a{
+  color: white;
+}

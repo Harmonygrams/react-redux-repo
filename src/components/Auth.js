@@ -40,6 +40,7 @@ const Auth = () => {
           Login
         </button>
       </form>
+      <p className="signup-option"> Don't have an account ? <a href="">Sign up</a></p>
     </div>
   );
 };
